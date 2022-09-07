@@ -19,7 +19,8 @@ def parallel_processor(
         files (Generator): file generator you want to process. like List, pathlib.glob, etc.
         process_function (Callable): function for process for your one file.
         max_file_num_per_process (int): the limit for the files to process at once.
-        process_result (Callable): function for process the results of your job.
+        process_result (Callable): function for process the results of your job (Future object).
+            job.result() returns your result of process_function
     """
     pbar = tqdm(total=total_file_num)
     with ProcessPoolExecutor(n_jobs) as executor:
